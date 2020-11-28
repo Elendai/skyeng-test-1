@@ -1,0 +1,16 @@
+<ng-container class="nav-tabs-container">
+  <ul class="tabs__titles">
+    <ng-container *ngFor="let tab of tabsService.tabs; let i = index;">
+      <li class="tabs__title" [ngClass]="{'tabs__title--active' : tab.isActive}">
+        <a (click)="tabsService.select(tab.id)">
+          <ng-container [ngTemplateOutlet]="tab.title"></ng-container>
+        </a>
+      </li>
+    </ng-container>
+  </ul>
+  <div *ngFor="let tab of tabsService.tabs">
+    <div *ngIf="tab.isInited" class="tabs__content" [class]="tab.isActive ? 'tabs__title--active' : ''">
+      <ng-container *ngTemplateOutlet="tab.content"></ng-container>
+    </div>
+  </div>
+</ng-container>
